@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+@theme {
+  --color-plum: #1e0b28;
+  --color-plum-deep: #120618;
+  --color-plum-light: #2d1140;
+  --color-electric: #1e88ff;
+  --color-violet: #7b3ff2;
+  --color-gold: #ffd700;
+  --color-gold-deep: #b8860b;
+  --color-ice: #f5f7fa;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+
+  --animate-float-slow: float-slow 7s ease-in-out infinite;
+  --animate-float-slower: float-slow 10s ease-in-out infinite;
+  --animate-shimmer: shimmer 3.2s linear infinite;
+  --animate-pulse-glow: pulse-glow 3.5s ease-in-out infinite;
+  --animate-drift-up: drift-up 14s linear infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-16px);
+    }
+  }
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.55;
+      filter: blur(60px);
+    }
+    50% {
+      opacity: 0.95;
+      filter: blur(80px);
+    }
+  }
+  @keyframes drift-up {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100vh);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--color-plum-deep);
+  color: #fff;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-electric);
+  color: #fff;
+}
+
+/* ---------- Luxury utilities ---------- */
+
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.09),
+    rgba(255, 255, 255, 0.03)
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-strong {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.04)
+  );
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    #ffffff 10%,
+    #9ec9ff 38%,
+    var(--color-electric) 62%,
+    var(--color-violet) 92%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(
+    100deg,
+    #fff3c4 0%,
+    var(--color-gold) 45%,
+    #e6a817 75%,
+    #fff3c4 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.65) 20%,
+    #ffffff 40%,
+    rgba(255, 255, 255, 0.65) 60%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 3.2s linear infinite;
+}
+
+.luxury-shadow {
+  box-shadow:
+    0 24px 60px -16px rgba(3, 11, 28, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.glow-electric {
+  box-shadow:
+    0 0 36px -6px rgba(30, 136, 255, 0.55),
+    0 0 90px -20px rgba(123, 63, 242, 0.45);
+}
+
+.glow-border {
+  position: relative;
+}
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 136, 255, 0.65),
+    rgba(123, 63, 242, 0.35),
+    rgba(255, 215, 0, 0.25)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.glow-border:hover::before {
+  opacity: 1;
+}
+
+/* 3D scaffolding */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.perspective-1000 {
+  perspective: 1000px;
+}
+.perspective-1600 {
+  perspective: 1600px;
+}
+
+/* CSS-only gold dust fallback (mobile / no WebGL) */
+.css-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.css-particles::before,
+.css-particles::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 -100vh 0;
+  background-image:
+    radial-gradient(2px 2px at 8% 20%, rgba(255, 215, 0, 0.8), transparent 60%),
+    radial-gradient(1.5px 1.5px at 24% 70%, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(2px 2px at 41% 35%, rgba(255, 215, 0, 0.6), transparent 60%),
+    radial-gradient(1.5px 1.5px at 56% 82%, rgba(158, 201, 255, 0.7), transparent 60%),
+    radial-gradient(2.5px 2.5px at 68% 12%, rgba(255, 215, 0, 0.75), transparent 60%),
+    radial-gradient(1.5px 1.5px at 79% 55%, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(2px 2px at 92% 30%, rgba(255, 215, 0, 0.65), transparent 60%);
+  background-size: 100% 100vh;
+  background-repeat: repeat-y;
+  animation: drift-up 16s linear infinite;
+}
+.css-particles::after {
+  background-position: 50% 50vh;
+  animation-duration: 24s;
+  opacity: 0.6;
+}
+
+/* Hero radial backdrop used behind / instead of WebGL */
+.hero-aurora {
+  background:
+    radial-gradient(60% 50% at 70% 30%, rgba(255, 200, 80, 0.12), transparent 70%),
+    radial-gradient(50% 45% at 25% 65%, rgba(123, 63, 242, 0.26), transparent 70%),
+    radial-gradient(35% 30% at 80% 75%, rgba(30, 136, 255, 0.1), transparent 70%),
+    linear-gradient(180deg, #120618 0%, #200c2c 55%, #120618 100%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-plum-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-electric), var(--color-violet));
+  border-radius: 8px;
+}
