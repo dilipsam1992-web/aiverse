@@ -8,7 +8,7 @@ import SectionHeading from "./SectionHeading";
 type PortfolioItem = {
   title: string;
   tag: string;
-  src?: string; // undefined = coming soon
+  src: string;
 };
 
 const ITEMS: PortfolioItem[] = [
@@ -116,61 +116,38 @@ export default function PortfolioSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              whileHover={
-                item.src ? { scale: 1.04, z: 40, y: -8 } : undefined
-              }
+              whileHover={{ scale: 1.04, z: 40, y: -8 }}
               className="preserve-3d"
             >
-              {item.src ? (
-                <button
-                  onClick={() => setActive(item)}
-                  className="glass glow-border group relative block w-full overflow-hidden rounded-2xl text-left luxury-shadow"
-                  aria-label={`Play ${item.title}`}
-                >
-                  <div className="relative aspect-[9/16] overflow-hidden bg-plum-deep">
-                    <video
-                      src={`${item.src}#t=0.5`}
-                      muted
-                      playsInline
-                      preload="metadata"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-plum-deep/90 via-transparent to-transparent" />
-                    <span className="absolute inset-0 flex items-center justify-center">
-                      <span className="rounded-full bg-white/15 p-5 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-electric/80">
-                        <Play size={26} className="ml-0.5 text-white" fill="white" />
-                      </span>
+              <button
+                onClick={() => setActive(item)}
+                className="glass glow-border group relative block w-full overflow-hidden rounded-2xl text-left luxury-shadow"
+                aria-label={`Play ${item.title}`}
+              >
+                <div className="relative aspect-[9/16] overflow-hidden bg-plum-deep">
+                  <video
+                    src={`${item.src}#t=0.5`}
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-plum-deep/90 via-transparent to-transparent" />
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <span className="rounded-full bg-white/15 p-5 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-electric/80">
+                      <Play size={26} className="ml-0.5 text-white" fill="white" />
                     </span>
-                  </div>
-                  <div className="px-5 py-4">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-electric">
-                      {item.tag}
-                    </p>
-                    <h3 className="mt-1 text-sm font-bold text-white">
-                      {item.title}
-                    </h3>
-                  </div>
-                </button>
-              ) : (
-                <div className="glass relative block w-full overflow-hidden rounded-2xl opacity-70 luxury-shadow">
-                  <div className="relative flex aspect-[9/16] items-center justify-center bg-gradient-to-br from-plum-light/60 to-plum-deep">
-                    <div className="text-center">
-                      <Hourglass size={30} className="mx-auto text-gold/70" />
-                      <p className="mt-3 text-xs font-bold uppercase tracking-widest text-white/50">
-                        Coming Soon
-                      </p>
-                    </div>
-                  </div>
-                  <div className="px-5 py-4">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-gold/80">
-                      {item.tag}
-                    </p>
-                    <h3 className="mt-1 text-sm font-bold text-white/70">
-                      {item.title}
-                    </h3>
-                  </div>
+                  </span>
                 </div>
-              )}
+                <div className="px-5 py-4">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-electric">
+                    {item.tag}
+                  </p>
+                  <h3 className="mt-1 text-sm font-bold text-white">
+                    {item.title}
+                  </h3>
+                </div>
+              </button>
             </motion.div>
           ))}
         </div>
