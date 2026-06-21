@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, X, Hourglass } from "lucide-react";
+import { Play, X } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
 type PortfolioItem = {
@@ -13,17 +13,25 @@ type PortfolioItem = {
 
 const ITEMS: PortfolioItem[] = [
   {
-    title: "Jewellery UGC Ad Video #1",
+    title: "Classy Jewellery Ad",
     tag: "AI UGC Ad",
-    src: "/videos/jewellery-ugc-ad-1.mp4",
+    src: "/videos/jewellery-ad-1.mp4",
   },
   {
-    title: "Jewellery UGC Ad Video #2",
-    tag: "AI UGC Ad",
-    src: "/videos/jewellery-ugc-ad-2.mp4",
+    title: "For All Occasions",
+    tag: "Festival Campaign",
+    src: "/videos/jewellery-ad-2.mp4",
   },
-  { title: "Future Showcase Video #3", tag: "Coming Soon" },
-  { title: "Future Showcase Video #4", tag: "Coming Soon" },
+  {
+    title: "Light to Gold",
+    tag: "Luxury Showcase",
+    src: "/videos/jewellery-ad-3.mp4",
+  },
+  {
+    title: "Traditional Ad",
+    tag: "Product Showcase",
+    src: "/videos/jewellery-ad-4.mp4",
+  },
 ];
 
 function VideoModal({

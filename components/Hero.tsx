@@ -80,7 +80,7 @@ function HeroBackground() {
           loop
           playsInline
           preload="metadata"
-          src="/videos/jewellery-ugc-ad-1.mp4"
+          src="/videos/jewellery-ad-1.mp4"
         />
         <div className="absolute inset-0 bg-plum-deep/80" />
       </div>
